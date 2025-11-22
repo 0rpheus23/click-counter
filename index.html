@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Klickzähler</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 80px;
+      background-color: #bf1c1c; /* heller roter Hintergrund */
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #count {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 6px;       /* Ecken abrunden */
+      border: 1px solid #888;   /* dünner Rahmen */
+    }
+  </style>
+
+</head>
+<body>
+  <h1>Klickzähler</h1>
+
+  <p>Du hast <span id="count">0</span> Mal geklickt.</p>
+
+  <div class="button-row">
+    <button id="clickButton">Klick mich!</button>
+    <button id="resetButton">Zurücksetzen</button>
+  </div>
+
+  <script>
+    // Referenzen auf die HTML-Elemente holen
+    const countSpan = document.getElementById('count');
+    const clickButton = document.getElementById('clickButton');
+    const resetButton = document.getElementById('resetButton');
+
+    // Startwert
+    let count = 0;
+
+    // Wenn der Klick-Button geklickt wird, Zahl erhöhen
+    clickButton.addEventListener('click', function () {
+      count = count + 1;              // erhöhe den Zähler um 1
+      countSpan.textContent = count;  // Anzeige aktualisieren
+    });
+
+    // Wenn der Reset-Button geklickt wird, Zahl auf 0 setzen
+    resetButton.addEventListener('click', function () {
+      count = 0;                      // Zähler zurücksetzen
+      countSpan.textContent = count;  // Anzeige aktualisieren
+    });
+  </script>
+</body>
+</html>
