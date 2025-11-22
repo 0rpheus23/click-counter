@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Einfache To-Do-Liste</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 60px auto;
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #inputRow {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    #newTask {
+      flex: 1;
+      padding: 8px;
+      font-size: 1rem;
+    }
+
+    #addButton {
+      padding: 8px 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      border: 1px solid #888;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 10px;
+    }
+
+    li {
+      background: white;
+      margin-bottom: 6px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      cursor: pointer; /* zeigt an: klickbar */
+    }
+
+    /* erledigte Aufgaben */
+    .done {
+      text-decoration: line-through;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <h1>Meine To-Do-Liste</h1>
+
+  <div id="inputRow">
+    <input id="newTask" type="text" placeholder="Neue Aufgabe eingeben..." />
+    <button id="addButton">Hinzufügen</button>
+  </div>
+
+  <ul id="taskList">
+    <!-- Aufgaben werden hier eingefügt -->
+  </ul>
+
+  <script>
+    const newTaskInput = document.getElementById('newTask');
+    const addButton = document.getElementById('addButton');
+    const taskList = document.getElementById('taskList');
+
+    // Funktion, um eine neue Aufgabe zur Liste hinzuzufügen
+    function addTask() {
+      const text = newTaskInput.value.trim(); // Text aus dem Eingabefeld
+
+      // Wenn nichts eingetippt ist, nichts tun
+      if (text === '') {
+        return;
+      }
+
+      // Neues <li>-Element erstellen
+      const li = document.createElement('li');
+      li.textContent = text;
+
+      // Klick auf die Aufgabe toggelt "done"-Status
+      li.addEventListener('click', function () {
+        li.classList.toggle('done');
+      });
+
+      // Element an die Liste anhängen
+      taskList.appendChild(li);
+
+      // Eingabefeld leeren
+      newTaskInput.value = '';
+      // Fokus wieder ins Eingabefeld setzen
+      newTaskInput.focus();
+    }
+
+    // Wenn der Button geklickt wird → Aufgabe hinzufügen
+    addButton.addEventListener('click', addTask);
+
+    // Wenn man im Eingabefeld Enter drückt → auch hinzufügen
+    newTaskInput.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        addTask();
+      }
+    });
+  </script>
+</body>
+</html>
